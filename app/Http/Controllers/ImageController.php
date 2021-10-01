@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 /* Mandamos a llamar el modelo category */
-use App\category;
+use App\image;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ImageController extends Controller
 {
     //
     /* vamos a obtener todas las categorua de nuestra base de datos ELOQUEN ORM
         Select * from categories  */
     public function index(){
 
-        $categories = Category::all();
-        return view('categories.index',[
-        'categories'=> $categories
+        $images = Image::all();
+        return view('images.index',[
+        'images'=> $images
         ]);
 
 
