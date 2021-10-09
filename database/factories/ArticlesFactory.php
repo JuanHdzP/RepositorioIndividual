@@ -4,7 +4,7 @@
 
 use App\Article;
 use App\Category;
-use App\Images;
+use App\Image;
 use Faker\Generator as Faker;
 
 $factory->define(Article::class, function (Faker $faker) {
@@ -15,6 +15,6 @@ $factory->define(Article::class, function (Faker $faker) {
         'subtitle'=> $faker->sentence,
         'body'=> $faker->paragraph(2),
         'category_id'=> Category::all()->random()->id,
-        'img_id'=> Images::all()->random()->id
+        'img_id'=> Image::all()->random()->id
     ];
 });
