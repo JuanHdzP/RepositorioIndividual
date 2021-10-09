@@ -37,6 +37,13 @@ class ImageController extends Controller
         return back();
     }
 
+
+    public function delete(Image $images)
+    {
+        $images->delete();
+        return back();
+        //
+    }
     /**
      * Display the specified resource.
      *

@@ -48,6 +48,12 @@ class ArticleController extends Controller
         return back();
     }
 
+    public function delete(Article $articles)
+    {
+        $articles->delete();
+        return back();
+        //
+    }
     /**
      * Display the specified resource.
      *
