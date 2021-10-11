@@ -3,10 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
 class Article extends Model
 {
-    //
     /*     declaramos nuestros campos de nuestra tabla tags*/    
     protected $fillable = [
         'title',
@@ -16,4 +14,13 @@ class Article extends Model
         'category_id',
         'img_id',
     ];
+
+    // Definimos la relacion de acticle y category uno a uno
+    public function Category(){
+        return $this->hasOne(Category::class);
+    }
+
+    public function Image(){
+        return $this->hasOne(Image::class);
+    }
 }

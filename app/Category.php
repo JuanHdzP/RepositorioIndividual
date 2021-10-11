@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App\Article;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
@@ -10,5 +10,9 @@ class Category extends Model
         'name',
     ];
 
+    // Relacion inversa uno a uno con article y category
+    public function Article(){
+        return $this->belongsTo(Article::class);
+    }
     
 }

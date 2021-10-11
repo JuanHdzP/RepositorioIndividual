@@ -48,10 +48,10 @@ class ArticleController extends Controller
         return back();
     }
 
-    public function delete(Article $articles)
+    public function delete(Article $article)
     {
-        $articles->delete();
-        return back();
+        $article->delete();
+        return ('El articulo se elimino correctamente');
         //
     }
     /**
