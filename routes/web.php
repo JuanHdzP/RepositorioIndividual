@@ -27,7 +27,7 @@ Route::delete('/categories/{category}','CategoryController@delete')->name('categ
 
 /* Articulos */
 
-Route::get('/article','ArticleController@index');
+Route::get('/articles','ArticleController@index');
 Route::post('/articles','ArticleController@store')->name('article.store');
 Route::delete('/articles/{article}','ArticleController@delete')->name('article.destroy');
 
