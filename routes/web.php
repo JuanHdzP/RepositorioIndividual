@@ -13,11 +13,14 @@
 
 /* USUARIOS */
 /* index lista */
-Route::get('/', 'UserController@index');
+
+/* Usuarios*/
+/* get obtenemos los  datos en BD del usuario con la funcion index*/
+Route::get('/users','UserController@index');
 /* store guarda datos en BD */
-Route::post('/users', 'UserController@store')->name('users.store');
+Route::post('/users', 'UserController@store')->name('user.store');
 /* Delete elima datos */
-Route::delete('/users/{user}' ,'UserController@delete')->name('users.destroy');
+Route::delete('/users/{user}' ,'UserController@delete')->name('user.destroy');
 
 /* Categorias */
 
@@ -37,4 +40,8 @@ Route::get('/image','ImageController@index');
 Route::post('/images','ImageController@store')->name('image.store');
 Route::delete('/images/{image}','ImageController@delete')->name('image.destroy');
 
-
+/* Auth Routes */
+Auth::routes();
+Route::get('/', 'HomeController@index')->name('home');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');

@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     //
     /* vamos a obtener todas las categorua de nuestra base de datos ELOQUEN ORM
         Select * from categories  */
