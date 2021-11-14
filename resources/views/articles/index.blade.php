@@ -9,10 +9,45 @@
                 <center>
                     <h3 class="text-white text-capitalize ps-3">Articulos</h3>
                 </center>
+                <div class="float-end">  
+                    {{-- Button del modal --}}                
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fas fa-plus-circle"></i>
+                      </button>
+                  </div>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
+              <div class="container">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">  
+        <div class="modal-header-center">
+          <br>
+          <h5 class="modal-title text-center" id="exampleModalLabel">Ingresa Articulo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label=""></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+          <div class="row">
+            <form action="{{ route('article.store') }}" method="POST">
+              {{ csrf_field() }} 
+                <label class= "col" for="">Articulo:</label>
+                <input class="col from-control" type="text" name="name" placeholder="Nombre">
+      </div>
+          <center>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+</center>
+        <!-- </div> -->
+      </form>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div>
+      <div class="row">
                 <table class="table align-items-center mb-0">
             <thead>
                 <tr>
@@ -27,6 +62,9 @@
                     <td>{{$article->id}}</td>
                     <td>{{$article->title}}</td>
                     <td>
+                    <form action="{{ route('article.destroy', $article) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
                           <input 
                           type="submit"
                           value="Eliminar" 

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
+use App\Category;
+use App\Image;
+use App\Article;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +26,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $users = User::count();
+        $categories = Category::count();
+        $images = Image::count();
+        $articles = Article::count();
+        //dd ($articles);
+        //dd(User::count());
+        //dd ($images);
+        return view('index', [
+            'users' => $users,
+            'categories' => $categories,
+            'images' => $images,
+            'articles' => $articles
+
+        ]);
     }
+
+    /* obtener cuanto usuarios hay dentro de base de datos */
+
+  
 }

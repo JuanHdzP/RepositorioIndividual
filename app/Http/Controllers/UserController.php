@@ -27,11 +27,8 @@ class UserController extends Controller
     }
     /* metododo delete */
     public function delete(User $user){
-
         $user->delete();
-
-        return (' el usuario se ha eliminado de manera correcta');
-
+        return back();
     }
 
 }

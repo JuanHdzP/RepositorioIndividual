@@ -16,7 +16,7 @@
 
 /* Usuarios*/
 /* get obtenemos los  datos en BD del usuario con la funcion index*/
-Route::get('/users','UserController@index');
+Route::get('/user','UserController@index');
 /* store guarda datos en BD */
 Route::post('/users', 'UserController@store')->name('user.store');
 /* Delete elima datos */
@@ -30,7 +30,7 @@ Route::delete('/categories/{category}','CategoryController@delete')->name('categ
 
 /* Articulos */
 
-Route::get('/articles','ArticleController@index');
+Route::get('/article','ArticleController@index');
 Route::post('/articles','ArticleController@store')->name('article.store');
 Route::delete('/articles/{article}','ArticleController@delete')->name('article.destroy');
 

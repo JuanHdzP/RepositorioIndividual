@@ -39,7 +39,11 @@ class CategoryController extends Controller
         Category::create([
             'name'=>$request->name,
         ]);
-        return back();
+        return redirect('/category')->with('message', 'La categoria se ha agregado exitosamente!');
+    }
+    public function delete(Category $category){
+        $category->delete();
+        return redirect('/category')->with('alert', 'La categoria se ha eliminado exitosamente!');
     }
 
     /**
@@ -86,4 +90,5 @@ class CategoryController extends Controller
     {
         //
     }
+    
 }

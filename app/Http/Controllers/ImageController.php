@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-/* Mandamos a llamar el modelo category */
 use App\Image;
 use Illuminate\Http\Request;
 
@@ -12,8 +11,7 @@ class ImageController extends Controller
         $this->middleware('auth');
     }   
     //
-    /* vamos a obtener todas las categorua de nuestra base de datos ELOQUEN ORM
-        Select * from categories  */
+
     public function index(){
 
         $images = Image::all();
@@ -34,19 +32,14 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
         Image::create([
             'name'=>$request->name,
         ]);
-        return back();
+        return redirect('/image')->with('message', 'La imagen se ha agregado exitosamente!');
     }
-
-
-    public function delete(Image $images)
-    {
-        $images->delete();
-        return back();
-        //
+    public function delete(Image $image){
+        Image::destroy($image);
+        return redirect('/image')->with('alert', 'La imagen se ha eliminado exitosamente!');
     }
     /**
      * Display the specified resource.
@@ -88,8 +81,5 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+
 }

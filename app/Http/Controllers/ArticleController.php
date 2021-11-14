@@ -49,14 +49,7 @@ class ArticleController extends Controller
             'category_id'=>$request->category_id,
             'img_id'=>$request->img_id
         ]);
-        return back();
-    }
-
-    public function delete(Article $article)
-    {
-        $article->delete();
-        return ('El articulo se elimino correctamente');
-        //
+        return redirect('/article')->with('message', 'El articulo se ha agregado exitosamente!');
     }
     /**
      * Display the specified resource.
@@ -101,5 +94,9 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function delete(Article $article){
+        $article->delete();
+        return redirect('/article')->with('alert', 'El articulo se ha eliminado exitosamente!');
     }
 }
