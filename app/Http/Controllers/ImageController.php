@@ -35,11 +35,11 @@ class ImageController extends Controller
         Image::create([
             'name'=>$request->name,
         ]);
-        return redirect('/image')->with('message', 'La imagen se ha agregado exitosamente!');
+        return redirect('/images')->with('message', 'La imagen se ha agregado exitosamente!');
     }
     public function delete(Image $image){
         Image::destroy($image);
-        return redirect('/image')->with('alert', 'La imagen se ha eliminado exitosamente!');
+        return redirect('/images')->with('alert', 'La imagen se ha eliminado exitosamente!');
     }
     /**
      * Display the specified resource.
@@ -58,9 +58,9 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+        $image = Image::findOrFaild($id);
+        return view('image/', compact('image','user'));
     }
 
     /**

@@ -76,9 +76,10 @@
             <tbody>
             @foreach($categories as $category)
                 <tr>
-                <td>{{$category->id}}</td>
+                      <td>{{$category->id}}</td>
                       <td>{{$category->name}}</td>
                       <td>
+                      <div class="d-flex">
                         <form action="{{ route('category.destroy', $category) }}" method="POST">
                             @method('DELETE')
                             @csrf
@@ -86,14 +87,50 @@
                             type="submit"
                             value="Eliminar" 
                             class="btn btn-sm btn-danger"
-                            onClick="return confirm('estas seguro  a eliminar el registro?')">
+                            onClick="return confirm('Estas seguro  a eliminar el registro?')">
                         </form>
+                              {{-- Button del modal --}}                
+                      <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalUpdate">
+                        <i class="fas fa-pencil-alt fa-lg"></i>
+                      </button>           
+                      </div>
                     </td>
-                </tr>
-                @endforeach
-            </tbody>
+                  </tr>
+                  @endforeach
+              </tbody>
 
-        </table>
-    </div>
-</div>
-@endsection
+          </table>
+          <!-- Modal ADD  STAR-->
+          <div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">  
+                <div class="modal-header-center">
+                  <br>
+                  <center>
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Categoria  </h5>
+                  </center>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label=""></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                  <div class="row">
+                    <form action="{{ route('category.store') }}" method="POST">
+                    {{-- generar el token para el envio de dato csrf --}}
+                      {{ csrf_field() }} 
+                        <label class= "col" for="">Categoria:</label>
+                        <input class="col from-control" type="text" name="name" placeholder="Nombre">
+              </div>
+                  <center>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </center>
+              </form>
+            </div>
+          </div>
+              </div>
+            </div>
+          </div>
+                      <!-- Modal ADD  END  -->
+      </div>
+  </div> 
+    @endsection

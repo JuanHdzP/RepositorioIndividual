@@ -48,7 +48,7 @@
         <div class="modal-body">
           <div class="container">
           <div class="row">
-            <form action="{{ route('image.store') }}" method="POST">
+            <form action="{{ route('images.store') }}" method="POST">
               {{ csrf_field() }} 
                 <label class= "col" for="">Imagen:</label>
                 <input class="col from-control" type="text" name="name" placeholder="Nombre">
@@ -79,20 +79,58 @@
                     <td>{{$image->id}}</td>
                     <td>{{$image->name}}</td>
                     <td>
-                    <form action="{{ route('image.destroy', $image) }}" method="POST">
+                    <div class="d-flex">
+                    <form action="{{ route('images.destroy', $image) }}" method="POST">
                             @method('DELETE')
                             @csrf
                           <input 
                           type="submit"
                           value="Eliminar" 
                           class="btn btn-sm btn-danger"
-                          onClick="return confirm('estas seguro  a eliminar el registro?')">
-                  </td>
-                </tr>
-                @endforeach
-            </tbody>
+                          onClick="return confirm('Estas seguro  a eliminar el registro?')">
+                        </form>
+                              {{-- Button del modal --}}                
+                      <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalUpdate">
+                        <i class="fas fa-pencil-alt fa-lg"></i>
+                      </button>           
+                      </div>
+                    </td>
+                  </tr>
+                  @endforeach
+              </tbody>
 
-        </table>
-    </div>
-</div>
-@endsection
+          </table>
+          <!-- Modal ADD  STAR-->
+          <div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">  
+                <div class="modal-header-center">
+                  <br>
+                  <center>
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Imagen</h5>
+                  </center>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label=""></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                  <div class="row">
+                    <form action="{{ route('images.store') }}" method="POST">
+                    {{-- generar el token para el envio de dato csrf --}}
+                      {{ csrf_field() }} 
+                        <label class= "col" for="">Imagen:</label>
+                        <input class="col from-control" type="text" name="name" placeholder="Nombre">
+              </div>
+                  <center>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </center>
+              </form>
+            </div>
+          </div>
+              </div>
+            </div>
+          </div>
+                      <!-- Modal ADD  END  -->
+      </div>
+  </div> 
+    @endsection

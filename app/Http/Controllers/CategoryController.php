@@ -63,9 +63,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+        $category = Category::findOrFaild($id);
+        return view('category/', compact('category','user'));
     }
 
     /**

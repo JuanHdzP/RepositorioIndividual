@@ -68,9 +68,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+        $article = Article::findOrFaild($id);
+        return view('article/', compact('article','user'));
     }
 
     /**
@@ -80,6 +80,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request, $id)
     {
         //

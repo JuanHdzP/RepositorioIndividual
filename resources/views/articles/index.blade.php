@@ -1,5 +1,22 @@
 @extends('Layout/app')
 @section('content')
+<div class="panel-body">
+      @if (session('message'))
+      <div class="alert alert-success alert-dismissible text-white" role="alert">
+      <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{ session('message') }}.</span>
+      <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>       
+      @endif
+      @if (session('alert'))
+      <div class="alert alert-danger alert-dismissible text-white" role="alert">
+      <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{ session('alert') }}.</span>
+      <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>       
+      @endif
 <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
@@ -25,7 +42,7 @@
       <div class="modal-content">  
         <div class="modal-header-center">
           <br>
-          <h5 class="modal-title text-center" id="exampleModalLabel">Ingresa Articulo</h5>
+          <h5 class="modal-title text-center" id="exampleModalLabel">Ingresa el Articulo</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label=""></button>
         </div>
         <div class="modal-body">
@@ -59,23 +76,61 @@
             <tbody>
             @foreach($articles as $article)
                 <tr>
-                    <td>{{$article->id}}</td>
-                    <td>{{$article->title}}</td>
-                    <td>
-                    <form action="{{ route('article.destroy', $article) }}" method="POST">
+                      <td>{{$article->id}}</td>
+                      <td>{{$article->title}}</td>
+                      <td>
+                      <div class="d-flex">
+                        <form action="{{ route('article.destroy', $article) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                          <input 
-                          type="submit"
-                          value="Eliminar" 
-                          class="btn btn-sm btn-danger"
-                          onClick="return confirm('estas seguro  a eliminar el registro?')">
-                  </td>
-                </tr>
-                @endforeach
-            </tbody>
+                            <input 
+                            type="submit"
+                            value="Eliminar" 
+                            class="btn btn-sm btn-danger"
+                            onClick="return confirm('Estas seguro  a eliminar el registro?')">
+                        </form>
+                              {{-- Button del modal --}}                
+                      <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalUpdate">
+                        <i class="fas fa-pencil-alt fa-lg"></i>
+                      </button>           
+                      </div>
+                    </td>
+                  </tr>
+                  @endforeach
+              </tbody>
 
-        </table>
-    </div>
-</div>
-@endsection
+          </table>
+          <!-- Modal ADD  STAR-->
+          <div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">  
+                <div class="modal-header-center">
+                  <br>
+                  <center>
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Articulo</h5>
+                  </center>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label=""></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                  <div class="row">
+                    <form action="{{ route('article.store') }}" method="POST">
+                    {{-- generar el token para el envio de dato csrf --}}
+                      {{ csrf_field() }} 
+                        <label class= "col" for="">Categoria:</label>
+                        <input class="col from-control" type="text" name="name" placeholder="Nombre">
+              </div>
+                  <center>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </center>
+              </form>
+            </div>
+          </div>
+              </div>
+            </div>
+          </div>
+                      <!-- Modal ADD  END  -->
+      </div>
+  </div> 
+    @endsection
