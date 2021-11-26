@@ -14,14 +14,13 @@ class CategoryController extends Controller
     //
     /* vamos a obtener todas las categorua de nuestra base de datos ELOQUEN ORM
         Select * from categories  */
+    
     public function index(){
-
-        $categories = Category::all();
+        $categories = Category::latest()->paginate(10);
+        //return $categories;
         return view('categories.index',[
         'categories'=> $categories
         ]);
-
-
     }
     public function create()
     {
@@ -63,9 +62,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id){
         $category = Category::findOrFaild($id);
-        return view('category/', compact('category','user'));
+        return view('/category');
     }
 
     /**

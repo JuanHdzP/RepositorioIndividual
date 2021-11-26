@@ -80,6 +80,8 @@
             </tbody>
 
         </table>
+        <!-- render paginate -->
+        {{$users->links()}}
     </div>
 </div>
 @endsection

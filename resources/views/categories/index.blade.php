@@ -93,6 +93,9 @@
                       <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalUpdate">
                         <i class="fas fa-pencil-alt fa-lg"></i>
                       </button>           
+                      <button type="button" class="btn btn-success btn-sm">
+                      <i class="far fa-eye"></i>
+                      </button>           
                       </div>
                     </td>
                   </tr>
@@ -100,6 +103,8 @@
               </tbody>
 
           </table>
+          <!-- render paginate -->
+          {{$categories->links()}}
           <!-- Modal ADD  STAR-->
           <div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">

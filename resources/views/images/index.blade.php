@@ -100,6 +100,8 @@
               </tbody>
 
           </table>
+          <!-- render paginate -->
+          {{$images->links()}}
           <!-- Modal ADD  STAR-->
           <div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">

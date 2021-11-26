@@ -26,7 +26,7 @@ Route::delete('/users/{user}' ,'UserController@delete')->name('user.destroy');
 
 Route::get('/category','CategoryController@index');
 Route::post('/categories','CategoryController@store')->name('category.store');
-Route::put('/categories/{$id}','CategoryController@edit')->name('category.edit');
+Route::get('/categories/{$id}','CategoryController@edit')->name('category.edit');
 Route::delete('/categories/{category}','CategoryController@delete')->name('category.destroy');
 
 /* Articulos */
@@ -35,6 +35,7 @@ Route::get('/article','ArticleController@index');
 Route::post('/articles','ArticleController@store')->name('article.store');
 Route::put('/articles/{$id}','ArticleController@edit')->name('article.edit');
 Route::delete('/articles/{article}','ArticleController@delete')->name('article.destroy');
+Route::get('/articles/{$id}','ControllerArticle@show');
 
 /* Imagenes */
 
@@ -48,3 +49,14 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*Email mailtrap*/
+Route::get('enviar',['as'=>'enviar', function(){
+    $data= ['link'=>'https://digital-pineapple.com.mx'];
+
+    \Mail::send('emails.notificacion', $data, function($message){
+        $message->from('ventas@digital-pineapple.com.mx', 'digital-pinneaple.com.mx');
+        $message->to('dsm41@gmail.com')->subject('Este es mi primer correo con mailtrap desde laravel');
+    });
+    return "Se envio el email";
+}]);

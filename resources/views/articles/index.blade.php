@@ -76,30 +76,27 @@
             <tbody>
             @foreach($articles as $article)
                 <tr>
-                      <td>{{$article->id}}</td>
-                      <td>{{$article->title}}</td>
-                      <td>
-                      <div class="d-flex">
-                        <form action="{{ route('article.destroy', $article) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <input 
-                            type="submit"
-                            value="Eliminar" 
-                            class="btn btn-sm btn-danger"
-                            onClick="return confirm('Estas seguro  a eliminar el registro?')">
-                        </form>
-                              {{-- Button del modal --}}                
-                      <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalUpdate">
-                        <i class="fas fa-pencil-alt fa-lg"></i>
-                      </button>           
-                      </div>
-                    </td>
-                  </tr>
-                  @endforeach
+                    <td>{{$article->id}}</td>
+                    <td>{{$article->title}}</td>
+                    <td>
+                        <button type='button' class="btn btn-primary"><i class="far fa-eye"></i></button>
+                        <button type='button' class="btn btn-success"><i class="fas fa-pen-square"></i></button>
+                        <button type='submit' class="btn btn-danger"
+                        onClick="return confirm('estas seguro  a eliminar el registro?')"><i class="far fa-trash-alt"></i></button>
+                       {{--  <input 
+                          type="submit"
+                          value="Eliminar" 
+                          class="btn btn-sm btn-danger"
+                          onClick="return confirm('estas seguro  a eliminar el registro?')">
+                           --}}
+                  </td>
+                </tr>
+                @endforeach
               </tbody>
 
           </table>
+          <!-- render paginate -->
+          {{$articles->links()}}
           <!-- Modal ADD  STAR-->
           <div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">

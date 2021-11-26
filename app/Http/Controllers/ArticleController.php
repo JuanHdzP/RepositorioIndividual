@@ -15,8 +15,7 @@ class ArticleController extends Controller
     /* vamos a obtener todas las categorua de nuestra base de datos ELOQUEN ORM
         Select * from categories  */
     public function index(){
-
-        $articles = Article::all();
+        $articles = Article::latest()->paginate(10);
         return view('articles.index',[
         'articles'=> $articles
         ]);
@@ -60,6 +59,12 @@ class ArticleController extends Controller
     public function show($id)
     {
         //
+        //obtines el article 
+        $article = Article::find($id);
+        return $article;
+        return view('article.show',[
+            '$articel' => $article
+        ]);
     }
 
     /**

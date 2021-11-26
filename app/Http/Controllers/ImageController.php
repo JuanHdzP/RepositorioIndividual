@@ -14,7 +14,7 @@ class ImageController extends Controller
 
     public function index(){
 
-        $images = Image::all();
+        $images = Image::latest()->paginate(10);
         return view('images.index',[
         'images'=> $images
         ]);
