@@ -36,6 +36,8 @@ Route::post('/articles','ArticleController@store')->name('article.store');
 Route::put('/articles/{$id}','ArticleController@edit')->name('article.edit');
 Route::delete('/articles/{article}','ArticleController@delete')->name('article.destroy');
 Route::get('/articles/{$id}','ControllerArticle@show');
+// Form GRID add articles;
+Route::get('/articles/add','ArticleController@create');
 
 /* Imagenes */
 

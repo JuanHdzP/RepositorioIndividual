@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 /* Mandamos a llamar el modelo category */
-use App\article;
+use App\Category;
+use App\Image;
+use App\Article;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -28,7 +30,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $article = new Article;
+        $categorias = Category::select('id', 'name')->orderBy('name')->get();
+        $imagenes = Image::select('id', 'name')->orderBy('name')->get();
+        return view('articles.add', compact('article', 'categorias', 'imagenes'));
     }
 
     /**
