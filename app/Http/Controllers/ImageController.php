@@ -35,11 +35,12 @@ class ImageController extends Controller
         Image::create([
             'name'=>$request->name,
         ]);
-        return redirect('/images')->with('message', 'La imagen se ha agregado exitosamente!');
+        return redirect('/image')->with('message', 'La imagen se ha agregado exitosamente!');
     }
+
     public function delete(Image $image){
-        Image::destroy($image);
-        return redirect('/images')->with('alert', 'La imagen se ha eliminado exitosamente!');
+        $image->delete();
+        return redirect('/category')->with('alert', 'La categoria se ha eliminado exitosamente!');
     }
     /**
      * Display the specified resource.

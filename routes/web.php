@@ -32,19 +32,19 @@ Route::delete('/categories/{category}','CategoryController@delete')->name('categ
 /* Articulos */
 
 Route::get('/article','ArticleController@index');
+Route::get('/article/add','ArticleController@create');
 Route::post('/articles','ArticleController@store')->name('article.store');
 Route::put('/articles/{$id}','ArticleController@edit')->name('article.edit');
 Route::delete('/articles/{article}','ArticleController@delete')->name('article.destroy');
-Route::get('/articles/{$id}','ControllerArticle@show');
+Route::get('/articles/{$id}','ArticleController@show');
 // Form GRID add articles;
-Route::get('/articles/add','ArticleController@create');
 
 /* Imagenes */
 
-Route::get('/images','ImageController@index');
-Route::post('/images','ImageController@store')->name('images.store');
-Route::put('/images/{$id}','ImageController@edit')->name('image.edit');
-Route::delete('/images/{image}','ImageController@delete')->name('images.destroy');
+Route::get('/image','ImageController@index');
+Route::post('/images','ImageController@store')->name('image.store');
+Route::get('/images/{$id}','ImageController@edit')->name('image.edit');
+Route::delete('/images/{image}','ImageController@delete')->name('image.destroy');
 
 /* Auth Routes */
 Auth::routes();

@@ -28,9 +28,9 @@
                 </center>
                 <div class="float-end">  
                     {{-- Button del modal --}}                
-                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <a type="button" href="article/add" class="btn btn-primary">
                         <i class="fas fa-plus-circle"></i>
-                      </button>
+                      </a>
                   </div>
               </div>
             </div>
@@ -79,16 +79,19 @@
                     <td>{{$article->id}}</td>
                     <td>{{$article->title}}</td>
                     <td>
+                    <div class="d-flex">
                         <button type='button' class="btn btn-primary"><i class="far fa-eye"></i></button>
-                        <button type='button' class="btn btn-success"><i class="fas fa-pen-square"></i></button>
-                        <button type='submit' class="btn btn-danger"
-                        onClick="return confirm('estas seguro  a eliminar el registro?')"><i class="far fa-trash-alt"></i></button>
-                       {{--  <input 
-                          type="submit"
-                          value="Eliminar" 
-                          class="btn btn-sm btn-danger"
-                          onClick="return confirm('estas seguro  a eliminar el registro?')">
-                           --}}
+                        <a type="button" href="{{route('article.edit',$article->id) }}" class="btn  btn-success" 
+                          data-bs-toggle="modal" data-bs-target="#modalUpdate"><i class="fas fa-pen-square"></i></a>
+                        <form action="{{ route('article.destroy', $article) }}" method="POST">
+                          @method('DELETE')
+                          @csrf
+                        <button type='submit' class="btn btn-danger"                  
+                        onClick="return confirm('estas seguro  a eliminar el registro?')">
+                        <i class="far fa-trash-alt"></i>
+                      </button>           
+                    </form>
+                  </div>
                   </td>
                 </tr>
                 @endforeach

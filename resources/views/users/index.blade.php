@@ -65,15 +65,19 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>
-                      <form action="{{ route('user.destroy', $user) }}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <input 
-                        type="submit"
-                        value="Eliminar" 
-                        class="btn btn-sm btn-danger"
+                    <div class="d-flex">
+                        <button type='button' class="btn btn-primary"><i class="far fa-eye"></i></button>
+                        <a type="button" href="" class="btn  btn-success" 
+                          data-bs-toggle="modal" data-bs-target="#modalUpdate"><i class="fas fa-pen-square"></i></a>
+                        <form action="{{ route('user.destroy', $user) }}" method="POST">
+                          @method('DELETE')
+                          @csrf
+                        <button type='submit' class="btn btn-danger"                  
                         onClick="return confirm('estas seguro  a eliminar el registro?')">
+                        <i class="far fa-trash-alt"></i>
+                      </button>           
                     </form>
+                  </div>
                     </td>
                 </tr>
                 @endforeach

@@ -80,23 +80,18 @@
                       <td>{{$category->name}}</td>
                       <td>
                       <div class="d-flex">
+                        <button type='button' class="btn btn-primary"><i class="far fa-eye"></i></button>
+                        <a type="button" href="{{route('category.edit',$category->id) }}" class="btn btn-success" 
+                          data-bs-toggle="modal" data-bs-target="#modalUpdate"><i class="fas fa-pen-square"></i></a>
                         <form action="{{ route('category.destroy', $category) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <input 
-                            type="submit"
-                            value="Eliminar" 
-                            class="btn btn-sm btn-danger"
-                            onClick="return confirm('Estas seguro  a eliminar el registro?')">
-                        </form>
-                              {{-- Button del modal --}}                
-                      <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalUpdate">
-                        <i class="fas fa-pencil-alt fa-lg"></i>
+                          @method('DELETE')
+                          @csrf
+                        <button type='submit' class="btn btn-danger"                  
+                        onClick="return confirm('estas seguro  a eliminar el registro?')">
+                        <i class="far fa-trash-alt"></i>
                       </button>           
-                      <button type="button" class="btn btn-success btn-sm">
-                      <i class="far fa-eye"></i>
-                      </button>           
-                      </div>
+                    </form>
+                  </div>
                     </td>
                   </tr>
                   @endforeach

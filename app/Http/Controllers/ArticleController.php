@@ -30,10 +30,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $article = new Article;
-        $categorias = Category::select('id', 'name')->orderBy('name')->get();
-        $imagenes = Image::select('id', 'name')->orderBy('name')->get();
-        return view('articles.add', compact('article', 'categorias', 'imagenes'));
+        return view('articles.add');
     }
 
     /**

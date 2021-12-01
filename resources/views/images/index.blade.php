@@ -48,7 +48,7 @@
         <div class="modal-body">
           <div class="container">
           <div class="row">
-            <form action="{{ route('images.store') }}" method="POST">
+            <form action="{{ route('image.store') }}" method="POST">
               {{ csrf_field() }} 
                 <label class= "col" for="">Imagen:</label>
                 <input class="col from-control" type="text" name="name" placeholder="Nombre">
@@ -80,20 +80,18 @@
                     <td>{{$image->name}}</td>
                     <td>
                     <div class="d-flex">
-                    <form action="{{ route('images.destroy', $image) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                          <input 
-                          type="submit"
-                          value="Eliminar" 
-                          class="btn btn-sm btn-danger"
-                          onClick="return confirm('Estas seguro  a eliminar el registro?')">
-                        </form>
-                              {{-- Button del modal --}}                
-                      <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalUpdate">
-                        <i class="fas fa-pencil-alt fa-lg"></i>
+                        <button type='button' class="btn btn-primary"><i class="far fa-eye"></i></button>
+                        <a type="button" href="{{route('image.edit',$image->id) }}" class="btn btn-success" 
+                          data-bs-toggle="modal" data-bs-target="#modalUpdate"><i class="fas fa-pen-square"></i></a>
+                        <form action="{{ route('image.destroy', $image) }}" method="POST">
+                          @method('DELETE')
+                          @csrf
+                        <button type='submit' class="btn btn-danger"                  
+                        onClick="return confirm('estas seguro  a eliminar el registro?')">
+                        <i class="far fa-trash-alt"></i>
                       </button>           
-                      </div>
+                    </form>
+                  </div>
                     </td>
                   </tr>
                   @endforeach
@@ -116,7 +114,7 @@
                 <div class="modal-body">
                   <div class="container">
                   <div class="row">
-                    <form action="{{ route('images.store') }}" method="POST">
+                    <form action="{{ route('image.store') }}" method="POST">
                     {{-- generar el token para el envio de dato csrf --}}
                       {{ csrf_field() }} 
                         <label class= "col" for="">Imagen:</label>
